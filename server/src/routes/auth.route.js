@@ -1,0 +1,1 @@
+const {register, login} = require('../controller/auth.controller')
