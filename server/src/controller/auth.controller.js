@@ -1,7 +1,6 @@
 const User = require("../models/user.model.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { useId } = require("react");
 
 // =======Helper : Generate token =============
 const generateToke = (userId) => {
