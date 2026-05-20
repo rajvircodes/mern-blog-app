@@ -5,10 +5,15 @@ const Post = require("../models/post.model.js");
 const createPost = async (req, res) => {
   try {
     const { title, content, category } = req.body;
+
+    const coverImage = req.file ? req.file.filename:"";
+
+
     const post = await Post.create({
       title,
       content,
       category,
+      coverImage,
       author: req.user._id, // comes from auth middleware
     });
     res.status(201).json(post);
@@ -75,6 +80,10 @@ const updatePost = async (req, res) => {
     post.title = title || post.title;
     post.content = content || post.content;
     post.category = category || post.category;
+
+    if(req.file){
+      post.coverImage = req.file.filename;
+    }
 
     const updatedPost = await post.save();
     res.status(200).json(updatedPost);

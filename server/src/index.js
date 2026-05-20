@@ -4,6 +4,7 @@ const cors = require('cors')
 const connectDB = require('./config/db.js')
 const authRoutes = require('./routes/auth.route.js')
 const postRoutes = require('./routes/post.routes.js')
+const path = require("path");
 
 dotenv.config() // LOAD .env variable first
 connectDB() // connect to mongoDB
@@ -12,6 +13,7 @@ const app = express()
 
 app.use(cors()) // Allow cors-origin requests
 app.use(express.json()) // Parse incoming JSON bodies
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')))
 
 
 app.use('/api/auth',authRoutes)
