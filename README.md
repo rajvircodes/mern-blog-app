@@ -1,190 +1,178 @@
-# MERN Blog App 🚀
+# 📝 MERN Blog App
 
-A beginner-friendly **MERN Blog Application Backend** built with **Node.js, Express.js, MongoDB, and JWT Authentication**.
-
-This project focuses on learning real-world backend development concepts including authentication, protected routes, image uploads, and secure API architecture.
-
-> Frontend is currently under development.
+A full-stack blog application built with the MERN stack (MongoDB, Express, React, Node.js). Features user authentication, protected routes, image uploads, and full CRUD functionality for blog posts.
 
 ---
 
-# 📌 Features
+## 🚀 Features
 
-- ✅ User Registration
-- ✅ User Login Authentication
-- ✅ JWT Token Authentication
-- ✅ Protected Routes Middleware
-- ✅ Password Hashing using bcrypt
-- ✅ Image Upload using Multer
-- ✅ MongoDB Database Integration
-- ✅ REST API Architecture
-- ✅ Environment Variables Support
-- ✅ Error Handling Middleware
-
----
-
-# 🛠️ Tech Stack
-
-## Backend
-- Node.js
-- Express.js
-
-## Database
-- MongoDB
-- Mongoose
-
-## Authentication & Security
-- JWT (JSON Web Token)
-- bcrypt
-
-## File Upload
-- Multer
-
-## Other Packages
-- dotenv
-- cors
-- nodemon
+- 🔐 User registration & login with JWT authentication
+- 🍪 Persistent auth state via localStorage
+- 📝 Create, read, update, and delete blog posts
+- 🖼️ Cover image upload per post
+- 🔒 Protected routes (frontend + backend)
+- 👤 Owner-only edit & delete controls
+- 📱 Responsive layout
+- 🔔 Toast notifications for all actions
+- 🚫 404 page for unknown routes
 
 ---
 
-# 📂 Project Structure
+## 🛠️ Tech Stack
 
-```bash
-server/
+### Backend
+| Tech | Purpose |
+|------|---------|
+| Node.js | Runtime environment |
+| Express.js | Web framework |
+| MongoDB | NoSQL database |
+| Mongoose | ODM for MongoDB |
+| JSON Web Token | Authentication |
+| bcryptjs | Password hashing |
+| Multer | Image file uploads |
+| dotenv | Environment variables |
+| CORS | Cross-origin requests |
+
+### Frontend
+| Tech | Purpose |
+|------|---------|
+| React (Vite) | UI framework |
+| React Router v6 | Client-side routing |
+| Axios | HTTP requests |
+| Context API | Global auth state |
+| react-hot-toast | Notifications |
+
+---
+
+## 📁 Project Structure
+
+```
+mern-blog/
+├── client/                   # React frontend
+│   └── src/
+│       ├── api/              # Axios instance
+│       ├── components/       # Navbar, PostCard, ProtectedRoute
+│       ├── context/          # AuthContext
+│       └── pages/            # All page components
 │
-├── src/
-│   ├── controllers/
-│   ├── models/
-│   ├── routes/
-│   ├── middleware/
-│   ├── uploads/
-│   ├── config/
-│   └── index.js
+├── server/                   # Node/Express backend
+│   └── src/
+│       ├── config/           # MongoDB connection
+│       ├── controllers/      # Route logic
+│       ├── middleware/        # Auth & upload middleware
+│       ├── models/           # Mongoose schemas
+│       ├── routes/           # API routes
+│       └── uploads/          # Stored images
 │
-├── .env
-├── package.json
+└── README.md
 ```
 
 ---
 
-# ⚙️ Environment Variables
+## ⚙️ Getting Started
 
-Create a `.env` file in the root directory and add:
+### Prerequisites
+- Node.js v18+
+- MongoDB Atlas account
 
-```env
-PORT=5000
-
-MONGO_URI=your_mongodb_connection_string
-
-JWT_SECRET=your_secret_key
-```
-
----
-
-# 📦 Installation
-
-Clone the repository:
-
+### 1. Clone the repository
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/your-username/mern-blog.git
+cd mern-blog
 ```
 
-Move into project folder:
-
+### 2. Setup Backend
 ```bash
 cd server
-```
-
-Install dependencies:
-
-```bash
 npm install
 ```
 
-Run the server:
+Create a `.env` file inside `server/`:
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret_key
+```
 
 ```bash
 npm run dev
 ```
 
----
-
-# 🚀 API Features
-
-## Authentication Routes
-- Register User
-- Login User
-
-## Protected Routes
-Protected using JWT middleware.
-
-Example:
-
-```http
-Authorization: Bearer your_token
-```
-
-## Image Upload
-Users can upload images using Multer middleware.
-
----
-
-# 🔐 Authentication Flow
-
-1. User registers with email & password
-2. Password gets hashed using bcrypt
-3. User logs in
-4. JWT token gets generated
-5. Token is verified for protected routes
-
----
-
-# 📸 Image Upload
-
-Images are stored locally using Multer inside:
-
+### 3. Setup Frontend
 ```bash
-src/uploads/
+cd ../client
+npm install
+npm run dev
+```
+
+### 4. Open the app
+```
+Frontend → http://localhost:5173
+Backend  → http://localhost:5000
 ```
 
 ---
 
-# 🧠 Learning Goals of This Project
+## 🔌 API Endpoints
 
-This project helped in understanding:
+### Auth
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| POST | `/api/auth/register` | Public | Register new user |
+| POST | `/api/auth/login` | Public | Login user |
 
-- REST APIs
-- Backend Folder Structure
-- Authentication System
-- Middleware
-- MongoDB CRUD Operations
-- File Handling
-- Secure Password Storage
-- Token-based Authentication
-
----
-
-# 📈 Future Improvements
-
-- Refresh Tokens
-- Role-based Authorization
-- Cloudinary Image Upload
-- Pagination
-- Comments System
-- Likes & Bookmarks
-- Admin Panel
-- Deployment
+### Posts
+| Method | Endpoint | Access | Description |
+|--------|----------|--------|-------------|
+| GET | `/api/posts` | Public | Get all posts |
+| GET | `/api/posts/:id` | Public | Get single post |
+| POST | `/api/posts` | Protected | Create post |
+| PUT | `/api/posts/:id` | Protected + Owner | Update post |
+| DELETE | `/api/posts/:id` | Protected + Owner | Delete post |
 
 ---
 
-# 🤝 Contributing
+## 🔐 Environment Variables
 
-Contributions are welcome.
-
-Feel free to fork the project and improve it.
+| Variable | Description |
+|----------|-------------|
+| `PORT` | Server port (default: 5000) |
+| `MONGO_URI` | MongoDB connection string |
+| `JWT_SECRET` | Secret key for JWT signing |
 
 ---
 
-# 👨‍💻 Developer
+## 📸 Screenshots
 
-Built with ❤️ by Rajvirsinh
+> _Add screenshots of your app here_
+
+---
+
+## 🧠 What I Learned
+
+- Full-stack MERN project architecture
+- REST API design with Express
+- JWT-based authentication flow
+- Password hashing with bcryptjs
+- File uploads with Multer
+- React Context API for global state
+- Protected & guest routes in React Router v6
+- Connecting frontend to backend with Axios interceptors
+- Real-world folder structure and clean code practices
+
+---
+
+## 📌 Future Improvements
+
+- [ ] Rich text editor for post content
+- [ ] Comment system
+- [ ] Pagination / infinite scroll
+- [ ] User profile page
+- [ ] Search and filter by category
+- [ ] Deploy to Render + Vercel
+
+---
+
+## 👨‍💻 Author
+
+Built with 💙 while learning the MERN stack.

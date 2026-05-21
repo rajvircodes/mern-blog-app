@@ -3,10 +3,14 @@ import { useAuth } from "../context/AuthContext"
 import { useState } from "react"
 import API from "../api/axios"
 import toast from "react-hot-toast"
+import { useLocation } from "react-router-dom";
 
 const Login = () => {
   const navigate = useNavigate()
   const { login } = useAuth
+
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
 
   const [formData, setFormData] = useState({ email: "", password: "" })
   const [loading, setLoading] = useState(false)
@@ -18,6 +22,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true)
+    navigate(from, { replace: true });
 
 
     try {
